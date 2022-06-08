@@ -1,0 +1,8 @@
+---
+- name: firstplay book
+  hosts: java-servers3
+  tasks:
+    - name: copy a file
+      copy:
+        src: /root/pk2
+        dest: /root/pk
