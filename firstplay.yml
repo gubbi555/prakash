@@ -1,7 +1,7 @@
 ---
-- name: firstplay book
+- name: first playbook
   hosts: java-servers3
-  become: yes
+  become: true
   tasks:
     - name: copy a file
       copy:
