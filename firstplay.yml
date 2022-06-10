@@ -1,9 +1,9 @@
 ---
 - name: first playbook
-  hosts: java-servers3
+  hosts: localhost
   become: yes
   tasks:
-    - name: copy a file
-      copy:
-        src: /root/pk2
-        dest: /root/pk
+    - name: apache latests
+      yum:
+        name: httpd
+        state: present
