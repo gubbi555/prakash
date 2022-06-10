@@ -1,6 +1,6 @@
 ---
 - name: first playbook
-  hosts: localhost
+  hosts: 172.31.20.140
   become: yes
   tasks:
     - name: apache latests
