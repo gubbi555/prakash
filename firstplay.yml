@@ -1,6 +1,6 @@
 ---
 - name: first playbook
-  hosts: 172.31.20.140
+  hosts: java-servers3
   become: yes
   tasks:
     - name: apache latests
