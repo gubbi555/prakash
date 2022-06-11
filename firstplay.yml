@@ -1,6 +1,6 @@
 ---
 - name: first playbook
-  hosts: localhost
+  hosts: java-servers3
   become: yes
   tasks:
     - name: apache latests
