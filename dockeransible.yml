@@ -3,10 +3,6 @@
   hosts: dev
   become: True
   tasks:
-    - name: install python pip
-      yum:
-        name: python-pip
-        state: present
     - name: start the container
       docker_container:
         name: tomcat
