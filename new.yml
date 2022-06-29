@@ -1,9 +1,0 @@
----
-- name: playbook
-  hosts: dev
-  become: yes
-  tasks:
-    - name: apache latest
-      yum:
-        name: httpd
-        state: present
