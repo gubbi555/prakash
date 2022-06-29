@@ -1,2 +1,2 @@
 [dev]
-172.31.22.159 ansible_use=ec2-user
+172.31.22.159 ansible_ssh_user=root ansible_ssh_pass=9535156873
