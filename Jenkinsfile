@@ -18,7 +18,7 @@ pipeline {
             }
             }
         }
-        stage ('push') {
+        stage ('push image') {
             steps {
                 sh "docker tag tomcat:1.0 prakashmk/tomcat:1.0"
                 sh "docker push prakashmk/tomcat:1.0"
