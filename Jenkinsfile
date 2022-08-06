@@ -1,33 +1,39 @@
 pipeline {
     agent any
+    environment {
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub_id')
+    }
+    tools {
+        maven "Maven"
+    }
     stages {
-        stage ('clning git') {
+        stage ("git clone") {
             steps {
                 git branch: 'main', url: 'https://github.com/gubbi555/prakash.git'
             }
         }
         stage ('build') {
-            steps {
-                sh "docker build . -t tomcat:1.0"
-            }
-        }
-        stage ('login') {
-            steps {
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                   sh "docker login -u prakashmk -p ${dockerHubPwd}" 
-            }
-            }
-        }
-        stage ('push image') {
-            steps {
-                sh "docker tag tomcat:1.0 prakashmk/tomcat:1.0"
-                sh "docker push prakashmk/tomcat:1.0"
-            }
-        }
-        stage ('deploy') {
-            steps {
-                sh "docker run -d -p 8082:8080 prakashmk/tomcat:1.0"
-            }
-        }
+           steps {
+               sh "mvn install"
+           }
+       }
+       stage('Docker Build and Tag') {
+           steps {
+              
+                sh 'docker build -t simpleweb:latest .'
+           }
+       }
+       stage ('run') {
+           steps {
+               sh 'docker run -d -p 8060:8080 simpleweb:latest'
+           }
+       }
+       stage ('login and push') {
+           steps {
+               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+               sh 'docker tag simpleweb:latest prakashmk/simpleweb:latest'
+               sh 'docker push prakashmk/simpleweb:latest'
+           }
+       }
     }
 }
