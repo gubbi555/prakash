@@ -1,9 +1,1 @@
----
-- name: first playbook
-  hosts: java-servers3
-  become: yes
-  tasks:
-    - name: apache latests
-      yum:
-        name: httpd
-        state: present
+
